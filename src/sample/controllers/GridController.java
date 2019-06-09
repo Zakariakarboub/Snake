@@ -46,5 +46,4 @@ public class GridController implements Initializable {
     private void setupGrid() {
 
     }
-
 }
