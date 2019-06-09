@@ -1,4 +1,4 @@
 package sample.controllers;
 
-public class Controller {
+public class TileController {
 }
