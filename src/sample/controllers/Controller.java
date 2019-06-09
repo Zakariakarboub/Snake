@@ -7,7 +7,7 @@ public class Controller {
         private GameScene GameScene;
         private int heightBoard = 760;
         private int widthBoard = 600;
-        
+
 
         game = new Game(this.widthBoard, this.heightBoard);
         this.createGame();
