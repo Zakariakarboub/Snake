@@ -7,6 +7,7 @@ public class Game {
 //    private ArrayList<Spot> mouses, bears, fires;
 
     public Game() {
+        this.snake = new Snake();
         isRunning = false;
 //        time = time(5000);
 //        snake   = new Snake();

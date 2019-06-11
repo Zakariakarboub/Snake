@@ -1,5 +1,7 @@
 package views;
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -13,6 +15,15 @@ public class GameScene extends JFrame {
     this.dashboard = new Dashboard();
 
     setTitle("PROG2 ASS Snake Zakaria Karboub");
+
+    setLayout(new BorderLayout());
+    add(this.drawpane, BorderLayout.CENTER);
+    add(this.dashboard,BorderLayout.SOUTH);
+
+    setSize(773, 688);
+    setResizable(false);
+    setVisible(true);
+    setLocationRelativeTo(null);
     }
 
     public Drawpane getDrawpane() {
