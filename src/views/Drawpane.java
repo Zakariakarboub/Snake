@@ -62,5 +62,6 @@ public class Drawpane extends JPanel {
             Spot mark = new Spot(Marker.BEAR);
             g.drawImage(mark.getImage(), mark.getPosition().x * 40, mark.getPosition().y * 40, null);
         }
+        this.gamecontroller.getGame().getSnake().showBody(g);
     }
 }

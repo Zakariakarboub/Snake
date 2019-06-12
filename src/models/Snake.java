@@ -16,23 +16,30 @@ public class Snake {
 
 
     public Snake() {
+        this.tail = new ArrayList<BodyPart>();
         this.position = new Point(5,2);
         this.tileWidth = 40;
         this.tileHeight = 40;
         this.startSize = 4;
 
-        for (int i = 4; i > startSize; i--) {
-            tail.add(new BodyPart(startSize, this.position.y, this.tileWidth, this.tileHeight));
+        for (int i = 0; i < startSize; i++) {
+            tail.add(new BodyPart(startSize - i, this.position.y, this.tileWidth, this.tileHeight));
         }
     }
 
     public void showBody(Graphics g) {
         if(tail.size() > 3) {
-            if () {
-                for (BodyPart part : tail) {
-                    part.showBody(g);
-                }
+//            if () {
+            for (BodyPart part : tail) {
+                part.showBody(g);
             }
+            g.setColor(Color.red);
+            g.fillOval(this.position.x * tileWidth, this.position.y * tileHeight, tileWidth, tileHeight);
+//            } else() {
+            for (int i = tail.size()-1; i >= 1; i++) {
+                tail.get(i).
+            }
+        }
         }
 
     }
