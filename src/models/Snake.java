@@ -1,5 +1,7 @@
 package models;
 
+import controllers.Main;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -25,7 +27,7 @@ public class Snake {
 
         for (int i = 0; i < startSize; i++) {
             tail.add(new BodyPart
-(startSize - i, this.position.y, this.tileWidth, this.tileHeight));
+                    (startSize - i, this.position.y, this.tileWidth, this.tileHeight));
         }
     }
 
@@ -44,7 +46,7 @@ public class Snake {
             g.fillOval((this.position.x * tileWidth + tileWidth), (this.position.y * tileHeight + tileHeight), tileWidth, tileHeight);
 
             for (int i = tail.size() - 1; i >= 1; i--) {
-                tail.get(i).setPosition(new Point(tail.get(i - 1).getPosition().x , tail.get(i - 1).getPosition().y));
+                tail.get(i).setPosition(new Point(tail.get(i - 1).getPosition().x, tail.get(i - 1).getPosition().y));
             }
             tail.get(0).setPosition(new Point(this.position.x, this.position.y));
 
@@ -65,6 +67,15 @@ public class Snake {
         }
     }
 
+    public void addTail(int count) {
+        if (tail.size() < 1) {
+            tail.add(new BodyPart(this.getPosition().x, this.getPosition().y, this.tileWidth, this.tileHeight));
+        } else {
+            for (int i = 0; i < count; i++) {
+                tail.add(new BodyPart(tail.get(tail.size() - 1).getPosition().x, tail.get(tail.size() - 1).getPosition().y, this.tileWidth, this.tileHeight));
+            }
+        }
+    }
 
     public Point getPosition() {
         return position;

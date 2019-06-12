@@ -5,11 +5,14 @@ import controllers.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Dashboard extends JPanel {
 
+    private int gameSpeed = 1;
     private GameController gameController;
     private JButton start;
     private JButton exit;
@@ -52,16 +55,21 @@ public class Dashboard extends JPanel {
     }
 
     public void setSlider(JSlider slider) {
-        this.slider = slider;
+        this.slider.setValue(this.gameSpeed);
     }
 
     public JLabel getTimer() {
         return timer;
     }
 
-    public void setTimer(JLabel timer) {
-        this.timer = timer;
+    public void setTimer(String timer) {
+        this.timer.setText(timer);
     }
+
+    public void setButtonText(String text) {
+        this.start.setText(text);
+    }
+
     public void showSlider() {
         add(this.slider);
         this.slider.setEnabled(false);
@@ -92,6 +100,28 @@ public class Dashboard extends JPanel {
         this.constrainer(this.exit,100,35);
         this.showSlider();
         this.constrainer(this.timer, 100,30);
+
+        /* BUTTON ACTIONLISTENER */
+        start.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                /* PLAY/PAUSE BUTTON */
+                if (!gameController.getGame().getRun()) {
+                    gameController.run(true); }
+                else { gameController.run(false); }
+            }
+        });
+
+
+        exit.addActionListener(e -> System.exit(0));
+
+        slider.setEnabled(false);
+        slider.setMajorTickSpacing(1);
+        slider.setPaintTicks(true);
+        slider.setSnapToTicks(true);
+        Hashtable<Integer, JLabel> speedLbl = new Hashtable<Integer, JLabel>();
+        for (int i = 1; i <= 12; i++) { speedLbl.put(i, new JLabel(Integer.toString(i))); }
+        slider.setLabelTable(speedLbl);
+        slider.setPaintLabels(true);
 
     }
 }

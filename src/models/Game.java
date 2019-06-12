@@ -16,6 +16,9 @@ public class Game {
 //        bears   = new ArrayList<Spot>();
 //        fires   = new ArrayList<Spot>();
     }
+    public void run(boolean state) {
+        this.run = state;
+    }
 
     public Snake getSnake() {
         return snake;
