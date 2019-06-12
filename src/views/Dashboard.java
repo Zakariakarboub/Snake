@@ -24,39 +24,14 @@ public class Dashboard extends JPanel {
         this.exit = new JButton("Exit");
         this.slider = new JSlider(JSlider.HORIZONTAL, 1, 12, 1);
         this.timer = new JLabel("00:00:0000");
+        this.gameController = new GameController();
         this.showDashboard();
     }
-    public GameController getGameController() {
-        return gameController;
-    }
 
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
-
-    public JButton getStart() {
-        return start;
-    }
-
-    public void setStart(JButton start) {
-        this.start = start;
-    }
-
-    public JButton getExit() {
-        return exit;
-    }
-
-    public void setExit(JButton exit) {
-        this.exit = exit;
-    }
-
-    public JSlider getSlider() {
-        return slider;
-    }
-
-    public void setSlider(JSlider slider) {
+    public void setSlider() {
         this.slider.setValue(this.gameSpeed);
     }
+    public void setSpeed(int v) { this.gameSpeed += v; }
 
     public JLabel getTimer() {
         return timer;
@@ -101,16 +76,21 @@ public class Dashboard extends JPanel {
         this.showSlider();
         this.constrainer(this.timer, 100,30);
 
+
+
+
         /* BUTTON ACTIONLISTENER */
         start.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
-                /* PLAY/PAUSE BUTTON */
                 if (!gameController.getGame().getRun()) {
-                    gameController.run(true); }
-                else { gameController.run(false); }
+                    gameController.run(true);
+                }
+                else {
+                    gameController.run(false);
+                }
             }
         });
-
 
         exit.addActionListener(e -> System.exit(0));
 

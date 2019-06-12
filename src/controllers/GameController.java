@@ -16,29 +16,33 @@ public class GameController {
     private Timer gameTimer;
     private long timer = 0;
     private long speed = 0;
+    private int delay = 5;
 
 
     public GameController() {
-        this.gameTimer = gameTimer;
-        this.gameLoop = new GameLoop();
         this.game = new Game();
-//        this.gameLoop = new GameLoop();
+        this.gameLoop = new GameLoop();
+        //this.gameTimer = new GameTimer(1,null);
     }
 
     public void level() {
         this.gameLoop.substract(rand()+3);
-        this.gameScene.getDashboard().setSlider(1);
+        this.gameScene.getDashboard().setSpeed(1);
         this.game.getSnake().addTail(rand());
-        gameScene.getDashboard().setSlider();
-    } d
+        this.gameScene.getDashboard().setSlider();
+    }
 
     private int rand() { return (int) ((Math.random() * (5+1-1)) + 2); }
 
     public void loop() {
         if ((this.game.getSnake().getPosition().x > (19 * 40) || game.getSnake().getPosition().x < 1) || (game.getSnake().getPosition().y > (15 * 40) || game.getSnake().getPosition().y < 1)) {
             this.showGameOverScene();
+        } else {
+            this.gameScene.getDrawpane().repaint();
+            this.game.collision();
         }
-
+        if (speed > 0 && speed % (this.delay*10) == 0) { level();
+        }   speed++;
     }
     // moet nog gebruiken in gametimer.java! UITZOEKEN
     public void time() {
@@ -48,11 +52,14 @@ public class GameController {
 
 
     public void showGameOverScene() {
-        this.run(false);
-        this.gameoverScene = new GameoverScene(getTimeString());
-        this.gameScene.setVisible(false);
-        this.gameScene.dispose();
+        if(this.getGame().getSnake().getGameOver()) {
+            this.run(false);
+            this.gameoverScene = new GameoverScene(getTimeString());
+            this.gameScene.setVisible(false);
+            this.gameScene.dispose();
+        }
     }
+
     public String covertTime(long time) {
         return (new SimpleDateFormat("mm:ss.SSS")).format(new Date(time));
     }

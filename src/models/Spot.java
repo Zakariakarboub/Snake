@@ -36,6 +36,10 @@ public class Spot {
         }
         return image;
     }
+    public void relocate() { this.getPosition().x = this.randCoords(1, 17); this.getPosition().y = this.randCoords(1, 13); }
+
+    private int randCoords(int min, int max) { return (int) ((Math.random() * (max+1-min)) + min); }
+
 
     public Point getPosition() {
         return position;

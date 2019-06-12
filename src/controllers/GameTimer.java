@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class GameTimer extends Timer {
-
+    private static final long serialVersionUID = 1L;
     private GameController gameController;
 
     public GameTimer(int delay, ActionListener listener) {

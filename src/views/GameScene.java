@@ -1,4 +1,6 @@
 package views;
+import controllers.KeyHandler;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -13,9 +15,9 @@ public class GameScene extends JFrame {
     public GameScene() {
     this.drawpane = new Drawpane();
     this.dashboard = new Dashboard();
-
+    addKeyListener(new KeyHandler());
     setTitle("PROG2 ASS Snake Zakaria Karboub");
-
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
     add(this.drawpane, BorderLayout.CENTER);
     add(this.dashboard,BorderLayout.SOUTH);

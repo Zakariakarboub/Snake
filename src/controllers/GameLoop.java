@@ -1,16 +1,15 @@
 package controllers;
 
+import models.Game;
+
 public class GameLoop extends Thread implements Runnable {
 
     private long delay = 100;
     private GameController gamecontroller;
 
-    public GameLoop() {
-        this.gamecontroller = new GameController();
-    }
-
     @Override
     public void run() {
+        this.gamecontroller = new GameController();
         try {
             while (this.gamecontroller.getGame().getRun()) {
                 sleep(this.delay);
@@ -21,6 +20,7 @@ public class GameLoop extends Thread implements Runnable {
         }
     }
     public void thread(boolean state) {
+        this.gamecontroller = new GameController();
         if(state) {
             start();
         } else {

@@ -1,5 +1,6 @@
 package models;
 
+import controllers.GameController;
 import controllers.Main;
 
 import java.awt.*;
@@ -14,6 +15,7 @@ public class Snake {
     private int tileWidth;
     private int tileHeight;
     private Direction dir;
+    private boolean gameOver = false;
 
 
     public Snake() {
@@ -28,6 +30,15 @@ public class Snake {
         for (int i = 0; i < startSize; i++) {
             tail.add(new BodyPart
                     (startSize - i, this.position.y, this.tileWidth, this.tileHeight));
+        }
+    }
+
+    public void bear() {
+        if(this.tail.size() >= 4) {
+            this.tail = split(this.tail, 0);
+            if(this.tail.size() < 4) {
+                this.setGameOver(true);
+            }
         }
     }
 
@@ -65,6 +76,19 @@ public class Snake {
                     break;
             }
         }
+    }
+
+    private ArrayList<BodyPart> split(ArrayList<BodyPart> list, int roundUp) {
+        ArrayList<BodyPart> first = new ArrayList<BodyPart>();
+        ArrayList<BodyPart> second = new ArrayList<BodyPart>();
+        int size = list.size();
+        for (int i = 0; i < size / 2; i++) {
+            first.add(list.get(i));
+        }
+        for (int i = size / 2; i < size; i++) {
+            second.add(list.get(i));
+        }
+        return (roundUp == 0) ? first : second;
     }
 
     public void addTail(int count) {
@@ -107,5 +131,12 @@ public class Snake {
 
     public void setGetRun(boolean getRun) {
         this.getRun = getRun;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+    public boolean getGameOver() {
+        return this.gameOver;
     }
 }
