@@ -2,13 +2,14 @@ package models;
 
 public class Game {
     private Snake snake;
-    private boolean isRunning;
+    private boolean run;
 //    private int time;
 //    private ArrayList<Spot> mouses, bears, fires;
 
     public Game() {
         this.snake = new Snake();
-        isRunning = false;
+        this.run = false;
+        this.snake.setGetRun(this.run);
 //        time = time(5000);
 //        snake   = new Snake();
 //        mouses  = new ArrayList<Spot>();
@@ -24,11 +25,11 @@ public class Game {
         this.snake = snake;
     }
 
-    public boolean isRunning() {
-        return isRunning;
+    public boolean getRun() {
+        return run;
     }
 
-    public void setRunning(boolean running) {
-        isRunning = running;
+    public void setRun(boolean run) {
+        this.run = run;
     }
 }
