@@ -17,10 +17,10 @@ public class Drawpane extends JPanel {
 
     private int cols = 19;
     private int rows = 15;
-    private int recW = 40;
-    private int recH = 40;
-    private int width = 760;
-    private int height = 650;
+    private int tileWith = 40;
+    private int tileHeight = 40;
+    private int gridWidth = 760;
+    private int gridHeight = 650;
 
     public Drawpane() {
         //setPreferredSize(new Dimension(width, height));
@@ -36,8 +36,7 @@ public class Drawpane extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         super.paintComponent(g2);
 
-//        g2.setColor(Color.gray);
-        g2.fillRect(0, 0, width, height);
+        g2.fillRect(0, 0, gridWidth, gridHeight);
 
         for (int x = 0; x < cols; x++) {
             for (int y = 0; y < rows; y++) {
@@ -48,7 +47,7 @@ public class Drawpane extends JPanel {
                 } else {
                     g2.setColor(Color.GRAY);
                 }
-                g2.fillRect(x * recW, y * recH, recH, recH);
+                g2.fillRect(x * tileWith, y * tileWith, tileWith, tileHeight);
             }
         }
         for (int i = 0; i < 3; i++) {
@@ -64,5 +63,4 @@ public class Drawpane extends JPanel {
             g.drawImage(mark.getImage(), mark.getPosition().x * 40, mark.getPosition().y * 40, null);
         }
     }
-
 }

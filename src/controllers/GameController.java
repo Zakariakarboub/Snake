@@ -15,7 +15,6 @@ public class GameController {
     public void showGameScene() {
         this.gameScene = new GameScene();
         this.gameScene.getDrawpane().passGameController(this);
-
     }
 
     public Game getGame() {
